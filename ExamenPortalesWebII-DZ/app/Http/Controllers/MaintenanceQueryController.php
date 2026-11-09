@@ -66,4 +66,11 @@ class MaintenanceQueryController extends Controller
         return response()->json($machines);
     }
     
+    //consulta 5: Obtener todas las máquinas que estén en estado "operativa" o "mantenimiento" y que tengan una criticidad "alta".
+    public function getOperationalCritical()
+    {
+        $machines = Machine::where(function ($query) {$query->where('status', 'operativa')->orWhere('status', 'mantenimiento');})
+        ->where('criticality', 'alta')->select('code', 'name', 'type', 'status', 'criticality')->get();
+        return response()->json($machines);
+    }
 }
