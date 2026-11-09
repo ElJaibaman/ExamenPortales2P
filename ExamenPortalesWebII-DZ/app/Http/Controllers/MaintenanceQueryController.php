@@ -41,4 +41,17 @@ class MaintenanceQueryController extends Controller
         return response()->json($maintenanceOrders);
     }
 
+    //consulta 3:
+
+    public function machinesWithProductionLine()
+    {
+       $machines = Machine::with('productionLine:id,name,location')
+                ->select('id', 'code', 'name', 'status', 'criticality', 'production_line_id')
+                ->orderBy('name')
+                ->get();
+
+            return response()->json($machines);
+    }
+    
+    
 }
