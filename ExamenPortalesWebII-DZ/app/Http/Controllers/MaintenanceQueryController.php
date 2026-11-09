@@ -73,4 +73,23 @@ class MaintenanceQueryController extends Controller
         ->where('criticality', 'alta')->select('code', 'name', 'type', 'status', 'criticality')->get();
         return response()->json($machines);
     }
+
+
+
+    //consulta 6: Obtener todas las máquinas que tengan órdenes de mantenimiento pendientes de tipo "correctivo".
+
+    
+public function machinesWithPendingCorrectiveOrders()
+    {
+        $machines = Machine::whereHas('maintenanceOrders', function ($query) {
+            $query->where('maintenance_type', 'correctivo')
+                ->where('status', 'pendiente')
+                ->whereNull('completed_at');
+        })
+        ->with('productionLine:id,name')
+        ->select('code', 'name', 'status', 'criticality', 'production_line_id')
+        ->get();
+
+        return response()->json($machines);
+    }
 }

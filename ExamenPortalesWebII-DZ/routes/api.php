@@ -15,3 +15,4 @@ Route::get('/maintenance-orders/completed-on-date/{date}', [MaintenanceQueryCont
 Route::get('/machines-with-production-line', [MaintenanceQueryController::class, 'machinesWithProductionLine']);
 Route::get('/machines/maintenance-order-count', [MaintenanceQueryController::class, 'MaintenanceOrderCountByMachine']);
 Route::get('/machines/operational-critical', [MaintenanceQueryController::class, 'getOperationalCritical']);
+Route::get('/machines/with-pending-corrective-orders', [MaintenanceQueryController::class, 'machinesWithPendingCorrectiveOrders']);
