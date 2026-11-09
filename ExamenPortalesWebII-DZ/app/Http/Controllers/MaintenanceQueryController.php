@@ -53,5 +53,17 @@ class MaintenanceQueryController extends Controller
             return response()->json($machines);
     }
     
+
+    //consulta 4: Obtener la cantidad de órdenes de mantenimiento por máquina, ordenadas de mayor a menor.
+
+    public function MaintenanceOrderCountByMachine()
+    {
+        $machines = Machine::withCount('maintenanceOrders')
+            ->select('code', 'name', 'status', 'criticality')
+            ->orderBy('maintenance_orders_count', 'desc')
+            ->get();
+
+        return response()->json($machines);
+    }
     
 }

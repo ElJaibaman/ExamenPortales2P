@@ -13,3 +13,4 @@ Route::get('/user', function (Request $request) {
 Route::get('/maintenance-orders/between-dates/{startDate}/{endDate}', [MaintenanceQueryController::class, 'MaintenanceOrderBeetweenDates']);
 Route::get('/maintenance-orders/completed-on-date/{date}', [MaintenanceQueryController::class, 'MaintenanceOrderCompletedOnDate']);
 Route::get('/machines-with-production-line', [MaintenanceQueryController::class, 'machinesWithProductionLine']);
+Route::get('/machines/maintenance-order-count', [MaintenanceQueryController::class, 'MaintenanceOrderCountByMachine']);
